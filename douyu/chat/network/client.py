@@ -28,9 +28,15 @@ class Client:
         self.msg_buff = ''
 
         while True:
-
-            data = self.s.recv(MAX_RECV_SIZE)
-
+            try:
+                data = self.s.recv(MAX_RECV_SIZE)
+            except Exception as e:
+                raise
+            else:
+                pass
+            finally:
+                pass
+            
             if not data:
                 time.sleep(0.01)
                 continue
