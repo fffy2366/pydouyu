@@ -9,25 +9,33 @@ window下cmd乱码解决：chcp 65001
 '''
 from douyu.chat.room import ChatRoom
 import redis
-r = redis.Redis(host='localhost', port=6379, db=0,password='db2016')
+from os import system
+
+r = redis.Redis(host='localhost', port=6379, db=0, password='db2016')
+
 
 def on_chat_message(msg):
-	#o = '[%s]:%s' % (msg.attr('nn'), msg.attr('txt'))
-	s = "{0} :{1}".format(msg.attr('nn'),msg.attr('txt'))
-	print s
-    # 保存入redis
-	#r.publish('douyu', s)
-	r.set('douyu',s)
+    # o = '[%s]:%s' % (msg.attr('nn'), msg.attr('txt'))
+    s = "{0} :{1}".format(msg.attr('nn'), msg.attr('txt'))
+
+    system('say '+msg.attr('txt'))
+    print s
+
+
+# 保存入redis
+# r.publish('douyu', s)
+# r.set('douyu',s)
 
 
 def run():
-	#彡彡九
+    # 彡彡九
     room = ChatRoom('485503')
-    #fffy2366
+    # fffy2366
     room = ChatRoom('593076')
 
     room.on('chatmsg', on_chat_message)
     room.knock()
 
+
 if __name__ == '__main__':
-     run()
+    run()
