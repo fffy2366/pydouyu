@@ -8,9 +8,17 @@ window下cmd乱码解决：chcp 65001
 [windows cmd命令显示UTF8设置](http://www.liangcuntu.com/windows_cmd_utf8)
 '''
 from douyu.chat.room import ChatRoom
+import redis
+r = redis.Redis(host='localhost', port=6379, db=0,password='db2016')
 
 def on_chat_message(msg):
-    print '[%s]:%s' % (msg.attr('nn'), msg.attr('txt'))
+	#o = '[%s]:%s' % (msg.attr('nn'), msg.attr('txt'))
+	s = "{0} :{1}".format(msg.attr('nn'),msg.attr('txt'))
+	print s
+    # 保存入redis
+	#r.publish('douyu', s)
+	r.set('douyu',s)
+
 
 def run():
 	#彡彡九
