@@ -11,6 +11,8 @@ https://www.github.com/fffy2366/pydouyu
 [Redis 命令参考](http://redisdoc.com/)
 
 ZRANGE douyuchatset 0 -1 WITHSCORES
+#递减
+ZREVRANGE douyuchatset 0 -1 WITHSCORES
 hget douyuchathash b8116d914b5b48ce7700010000000000
 '''
 from douyu.chat.room import ChatRoom
@@ -31,7 +33,6 @@ def on_chat_message(msg):
     system('say '+msg.attr('txt'))
     print s
 
-
     # 按日期保存入redis
     # r.publish('douyu', s)
     # r.set('douyu',s)
@@ -41,7 +42,7 @@ def on_chat_message(msg):
 
     r.zadd("douyuchatset",cid,now)
 
-    v = {"nn":msg.attr('nn'),"txt":msg.attr('txt')}
+    v = {"nn":msg.attr('nn'),"txt":msg.attr('txt'),"created_at":created_at}
     r.hset("douyuchathash",cid,v)
 
 def run():
