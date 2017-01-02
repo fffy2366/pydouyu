@@ -24,7 +24,7 @@ import uuid
 
 r = redis.Redis(host='localhost', port=6379, db=0, password='db2016')
 
-
+# 弹幕
 def on_chat_message(msg):
     # print msg.to_text()
     #el@=/uid@=98050310/nn@=liangcuntu/cid@=b8116d914b5b48ce8cec000000000000/level@=1/gid@=-9999/rg@=4/rid@=593076/txt@=测试/type@=chatmsg/ic@=avanew@Sface@S201612@S28@S08@Sed9e85a68b5fa100dc5ece9902ca9c93/ct@=2/
@@ -44,6 +44,7 @@ def on_chat_message(msg):
 
     v = {"nn":msg.attr('nn'),"txt":msg.attr('txt'),"created_at":created_at}
     r.hset("douyuchathash:"+msg.attr('rid'),cid,v)
+# 欢迎
 def on_uenter(msg):
     # el@=eid@AA=1500000089@ASetp@AA=3@ASsc@AA=1@ASef@AA=0@AS@Seid@AA=1500000090@ASetp@AA=1@ASsc@AA=1@ASef@AA=0@AS@S/rni@=0/gt@=1/uid@=2129023/nn@=ww2h7/level@=12/rid@=757122/type@=uenter/ic@=avatar@S002@S12@S90@S23_avatar/
     # print msg.to_text()
@@ -63,6 +64,38 @@ def on_uenter(msg):
 
     v = {"nn":msg.attr('nn'),"created_at":created_at}
     r.hset("douyuenterhash:"+msg.attr('rid'),_uuid,v)
+# 赠送礼物消息
+def on_dgb(msg):
+    # print msg.to_text()
+    giftlist = {}
+    giftlist['192'] = "192"
+    giftlist['507'] = "507"
+    giftlist['508'] = "508"
+    giftlist['512'] = "圆蛋"
+    giftlist['513'] = "小红包"
+    giftlist['514'] = "鸡小萌"
+    giftlist['515'] = "三周年蛋糕"
+    giftlist['516'] = "庆典飞艇"
+    giftlist['517'] = "跨年火箭"
+    keys = giftlist.keys()
+    gift = giftlist[msg.attr('gfid')] if msg.attr('gfid') in keys else msg.attr('gfid')
+
+    s = "感谢{0}赠送的{1}".format(msg.attr('nn'),gift)
+
+    system('say '+s)
+    print s
+
+    # 按日期保存入redis
+    # r.publish('douyu', s)
+    # r.set('douyu',s)
+    _uuid = uuid.uuid1()
+    created_at = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    now = int(time.time())
+
+    r.zadd("douyugiftset:"+msg.attr('rid'),_uuid,now)
+
+    v = {"nn":msg.attr('nn'),"gfid":msg.attr('gfid'),"created_at":created_at}
+    r.hset("douyugifthash:"+msg.attr('rid'),_uuid,v)
 def run():
     # 彡彡九
     # room = ChatRoom('485503')
@@ -72,6 +105,7 @@ def run():
 
     room.on('chatmsg', on_chat_message)
     room.on('uenter', on_uenter)
+    room.on('dgb', on_dgb)
     room.knock()
 
 
