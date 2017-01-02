@@ -21,6 +21,7 @@ from os import system
 import datetime
 import time
 import uuid
+import sys
 
 r = redis.Redis(host='localhost', port=6379, db=0, password='db2016')
 
@@ -96,12 +97,13 @@ def on_dgb(msg):
 
     v = {"nn":msg.attr('nn'),"gfid":msg.attr('gfid'),"created_at":created_at}
     r.hset("douyugifthash:"+msg.attr('rid'),_uuid,v)
-def run():
+def run(room_id):
     # 彡彡九
     # room = ChatRoom('485503')
     # room = ChatRoom('757122')
     # fffy2366
-    room = ChatRoom('593076')
+    # room = ChatRoom('593076')
+    room = ChatRoom(room_id)
 
     room.on('chatmsg', on_chat_message)
     room.on('uenter', on_uenter)
@@ -110,4 +112,10 @@ def run():
 
 
 if __name__ == '__main__':
-    run()
+    filename = sys.argv[0]
+    if len(sys.argv)<2:
+        print "please input room id"
+    else:
+        room_id = sys.argv[1]
+
+        run(room_id)
