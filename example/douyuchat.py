@@ -30,7 +30,7 @@ def on_chat_message(msg):
     # o = '[%s]:%s' % (msg.attr('nn'), msg.attr('txt'))
     s = "{0} :{1}".format(msg.attr('nn'), msg.attr('txt'))
 
-    system('say '+msg.attr('txt'))
+    # system('say '+msg.attr('txt'))
     print s
 
     # 按日期保存入redis
@@ -40,16 +40,16 @@ def on_chat_message(msg):
     created_at = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
     now = int(time.time())
 
-    r.zadd("douyuchatset",cid,now)
+    r.zadd("douyuchatset_"+msg.attr('rid'),cid,now)
 
     v = {"nn":msg.attr('nn'),"txt":msg.attr('txt'),"created_at":created_at}
-    r.hset("douyuchathash",cid,v)
+    r.hset("douyuchathash_"+msg.attr('rid'),cid,v)
 
 def run():
     # 彡彡九
     room = ChatRoom('485503')
     # fffy2366
-    room = ChatRoom('593076')
+    # room = ChatRoom('593076')
 
     room.on('chatmsg', on_chat_message)
     room.knock()
