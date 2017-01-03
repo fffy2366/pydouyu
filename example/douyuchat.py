@@ -24,7 +24,14 @@ import uuid
 import sys
 
 r = redis.Redis(host='localhost', port=6379, db=0, password='db2016')
-
+def UsePlatform( ):
+    sysstr = platform.system()
+    if(sysstr =="Windows"):
+        return "windows"
+    elif(sysstr == "Linux"):
+        return "linux"
+    else:
+        return "other"
 # 弹幕
 def on_chat_message(msg):
     # print msg.to_text()
