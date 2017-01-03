@@ -24,7 +24,7 @@ import uuid
 import sys
 
 r = redis.Redis(host='localhost', port=6379, db=0, password='db2016')
-def UsePlatform( ):
+def usePlatform( ):
     sysstr = platform.system()
     if(sysstr =="Windows"):
         return "windows"
