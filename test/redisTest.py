@@ -40,6 +40,7 @@ created_at = datetime.datetime
 
 print created_at
 
+[].append()
 
 
 # 获得当前时间时间戳

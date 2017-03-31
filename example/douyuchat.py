@@ -50,8 +50,8 @@ def on_uenter(msg):
     # el@=eid@AA=1500000089@ASetp@AA=3@ASsc@AA=1@ASef@AA=0@AS@Seid@AA=1500000090@ASetp@AA=1@ASsc@AA=1@ASef@AA=0@AS@S/rni@=0/gt@=1/uid@=2129023/nn@=ww2h7/level@=12/rid@=757122/type@=uenter/ic@=avatar@S002@S12@S90@S23_avatar/
     # print msg.to_text()
     s = "欢迎{0}来到本直播间".format(msg.attr('nn'))
-
-    system('say '+s)
+    if(msg.attr('nn')!="liangcuntu"):
+        system('say '+s)
     print s
 
     # 按日期保存入redis
@@ -69,15 +69,19 @@ def on_uenter(msg):
 def on_dgb(msg):
     # print msg.to_text()
     giftlist = {}
-    giftlist['192'] = "192"
+    giftlist['191'] = "鱼丸"
+    giftlist['192'] = "赞"
+    giftlist['193'] = "弱鸡"
     giftlist['507'] = "507"
-    giftlist['508'] = "508"
+    giftlist['508'] = "小雪人"
     giftlist['512'] = "圆蛋"
     giftlist['513'] = "小红包"
     giftlist['514'] = "鸡小萌"
     giftlist['515'] = "三周年蛋糕"
     giftlist['516'] = "庆典飞艇"
     giftlist['517'] = "跨年火箭"
+    giftlist['519'] = "呵呵"
+    giftlist['569'] = "小元宝"
     keys = giftlist.keys()
     gift = giftlist[msg.attr('gfid')] if msg.attr('gfid') in keys else msg.attr('gfid')
 

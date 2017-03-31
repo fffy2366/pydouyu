@@ -24,6 +24,7 @@ for cid in cids:
 
     created_at = "["+msg['created_at']+"]" if 'created_at' in keys else ""
     giftlist = {}
+    giftlist['191'] = "鱼丸"
     giftlist['192'] = "192"
     giftlist['507'] = "507"
     giftlist['508'] = "508"
