@@ -50,8 +50,9 @@ def on_uenter(msg):
     # el@=eid@AA=1500000089@ASetp@AA=3@ASsc@AA=1@ASef@AA=0@AS@Seid@AA=1500000090@ASetp@AA=1@ASsc@AA=1@ASef@AA=0@AS@S/rni@=0/gt@=1/uid@=2129023/nn@=ww2h7/level@=12/rid@=757122/type@=uenter/ic@=avatar@S002@S12@S90@S23_avatar/
     # print msg.to_text()
     s = "欢迎{0}来到本直播间".format(msg.attr('nn'))
-    if(msg.attr('nn')!="liangcuntu"):
+    if(msg.attr('nn')!="liangcuntu" and msg.attr('nn')!="fffy2366"):
         system('say '+s)
+        pass
     print s
 
     # 按日期保存入redis
