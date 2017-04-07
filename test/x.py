@@ -162,9 +162,12 @@ class Urlgets:
 		values={}
 		values['5']='1'
 		values['HidCK']=hi
-		values['id']='isuntime66'
+		# values['id']='isuntime66'
+		values['id']='efpa2ha012'
+		#efpa2ha010 efpa2ha011 efpa2ha012
 		values['lang']='zh_cn'
-		values['password']='123456aa'
+		# values['password']='123456aa'
+		values['password']='pppp1111'
 		values['tag']=tag
 		values['fingerprint']='4bb67c1cf7e5546e7267611629e3707c'
 		values['tk']=tk
@@ -181,4 +184,10 @@ class Urlgets:
 		self.pri_ck()
 		hh.close
 		return values
-IM=Urlgets().userlogin()
+def cont():
+	try:
+		IM=Urlgets().userlogin()
+		return True
+	except:
+		IM=Urlgets().userlogin()
+		return False
