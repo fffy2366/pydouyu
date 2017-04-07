@@ -89,6 +89,7 @@ def on_dgb(msg):
     giftlist['516'] = "庆典飞艇"
     giftlist['517'] = "跨年火箭"
     giftlist['519'] = "呵呵"
+    giftlist['520'] = "稳"
     giftlist['569'] = "小元宝"
     keys = giftlist.keys()
     gift = giftlist[msg.attr('gfid')] if msg.attr('gfid') in keys else msg.attr('gfid')
