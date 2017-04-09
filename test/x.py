@@ -162,12 +162,12 @@ class Urlgets:
 		values={}
 		values['5']='1'
 		values['HidCK']=hi
-		# values['id']='isuntime66'
-		values['id']='efpa2ha012'
-		#efpa2ha010 efpa2ha011 efpa2ha012
+		# values['id']='_isuntime66'
+		values['id']='_efpa2ha012'
+		#efpa2ha010_efpa2ha011_efpa2ha012
 		values['lang']='zh_cn'
-		# values['password']='123456aa'
-		values['password']='pppp1111'
+		# values['password']='_123456aa'
+		values['password']='_pppp1111'
 		values['tag']=tag
 		values['fingerprint']='4bb67c1cf7e5546e7267611629e3707c'
 		values['tk']=tk

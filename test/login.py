@@ -1,23 +1,21 @@
 #!bin/evn python
 # -*-coding:utf8-*-
+# doc:http://selenium-python.readthedocs.io/installation.html
 __author__ = 'Frank'
 from selenium import webdriver
-from selenium.webdriver.common.keys import Keys
+import selenium.webdriver.support.ui as ui
 import time
 
-#模拟登陆163邮箱
-# driver = webdriver.Firefox()
-driver = webdriver.PhantomJS()
-
-driver.get("http://mail.163.com/")
-
-#用户名 密码
-elem_user = driver.find_element_by_name("email")
-elem_user.send_keys("")
-elem_pwd = driver.find_element_by_name("password")
-elem_pwd.send_keys("vjdyps@163")
-elem_pwd.send_keys(Keys.RETURN)
-time.sleep(5)
-assert "baidu" in driver.title
-driver.close()
-driver.quit()
+if __name__ == '__main__':
+    url="https://www.sbobet.com/zh-cn/euro"
+    driver = webdriver.PhantomJS()
+    driver.get(url)
+    wait = ui.WebDriverWait(driver, 60)
+    driver.find_element_by_id("username").send_keys("_efpa2ha012")
+    driver.find_element_by_id("password").send_keys("_pppp1111")
+    driver.execute_script("$M('tb').onSignIn();")
+    wait.until(lambda dr: dr.find_element_by_id('login-name').is_displayed())
+    print driver.current_url
+    time.sleep(3)
+    driver.save_screenshot('screen.png')
+    driver.quit()

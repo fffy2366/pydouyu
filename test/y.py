@@ -86,8 +86,8 @@ class Urlgets:
 		values['tag']=tags[0]
 		values['HidCK']=hidck[0]
 		values['tk']=Token
-		values['password']='pppp1111'
-		values['id']='efpa2ha011'
+		values['password']='_pppp1111'
+		values['id']='_efpa2ha011'
 		values['fingerprint']='bad1c989ff6b7081c761eedfa6ba1c34'
 		values['lang']='zh_cn'
 		values['5']='1'
