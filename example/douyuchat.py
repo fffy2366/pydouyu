@@ -24,6 +24,9 @@ import uuid
 import sys
 
 r = redis.Redis(host='localhost', port=6379, db=0, password='db2016')
+global gift_msg
+gift_msg = ""
+
 def usePlatform( ):
     sysstr = platform.system()
     if(sysstr =="Windows"):
@@ -75,6 +78,7 @@ def on_uenter(msg):
     r.hset("douyuenterhash:"+msg.attr('rid'),_uuid,v)
 # 赠送礼物消息
 def on_dgb(msg):
+    global gift_msg
     # print msg.to_text()
     giftlist = {}
     giftlist['191'] = "鱼丸"
@@ -91,12 +95,15 @@ def on_dgb(msg):
     giftlist['519'] = "呵呵"
     giftlist['520'] = "稳"
     giftlist['569'] = "小元宝"
+    giftlist['713'] = "辣眼睛"
+    giftlist['714'] = "怂"
     keys = giftlist.keys()
     gift = giftlist[msg.attr('gfid')] if msg.attr('gfid') in keys else msg.attr('gfid')
 
     s = "感谢{0}赠送的{1}".format(msg.attr('nn'),gift)
-
-    system('say '+s)
+    if(s!=gift_msg):
+        system('say '+s)
+        gift_msg = s
     print s
 
     # 按日期保存入redis
