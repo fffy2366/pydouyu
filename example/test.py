@@ -1,4 +1,4 @@
-global msg
+# global msg
 msg = ""
 def message(m):
 	global msg

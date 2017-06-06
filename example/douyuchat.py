@@ -24,7 +24,7 @@ import uuid
 import sys
 
 r = redis.Redis(host='localhost', port=6379, db=0, password='db2016')
-global gift_msg
+# global gift_msg
 gift_msg = ""
 
 def usePlatform( ):
