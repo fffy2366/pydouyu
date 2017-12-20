@@ -21,6 +21,13 @@ Python Wrapper for DouyuTV APIs, including support for accessing ChatRoom, e.g. 
 	if __name__ == '__main__':
 	     run()
 
+# other 
+```
+pip install douyu
+pip install redis
+$ python example/douyuchat.py 593076
+```
+
 # References
 
 - [Douyu Developer BBS](http://dev-bbs.douyutv.com/forum.php)

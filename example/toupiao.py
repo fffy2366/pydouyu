@@ -1,4 +1,4 @@
-#!bin/evn python
+#/!bin/evn python
 # -*-coding:utf8-*-
 import redis
 import uuid
