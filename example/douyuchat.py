@@ -37,12 +37,13 @@ def usePlatform():
     else:
         return "other"
 def say(msg):
+    # http://pyttsx.readthedocs.io/en/latest/
     # print usePlatform()
     if(usePlatform()=="windows"):
         import pyttsx
         engine = pyttsx.init()
-        # text = u'你好'
-        # print 'hi'
+        volume = engine.getProperty('volume')
+        # print volume
         msg = msg.decode('utf8')
         engine.say(msg)
         engine.runAndWait()
@@ -51,9 +52,8 @@ def say(msg):
 def echo(msg):
     if(usePlatform()=="windows"):
         msg = msg.decode('utf8')
-        print msg
-    else:
-        print msg
+    print msg
+    
 # 弹幕
 def on_chat_message(msg):
     # print msg.to_text()
