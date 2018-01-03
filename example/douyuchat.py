@@ -15,6 +15,7 @@ ZRANGE douyuchatset 0 -1 WITHSCORES
 ZREVRANGE douyuchatset 0 -1 WITHSCORES
 hget douyuchathash b8116d914b5b48ce7700010000000000
 '''
+from __future__ import print_function
 from douyu.chat.room import ChatRoom
 import redis
 from os import system
@@ -52,7 +53,7 @@ def say(msg):
 def echo(msg):
     if(usePlatform()=="windows"):
         msg = msg.decode('utf8')
-    print msg
+    print(msg)
     
 # 弹幕
 def on_chat_message(msg):
@@ -124,7 +125,7 @@ def on_dgb(msg):
     if(s!=gift_msg):
         system('say '+s)
         gift_msg = s
-    print s
+    print(s)
 
     # 按日期保存入redis
     # r.publish('douyu', s)
@@ -154,7 +155,7 @@ def run(room_id):
 if __name__ == '__main__':
     filename = sys.argv[0]
     if len(sys.argv)<2:
-        print "please input room id"
+        print("please input room id")
     else:
         room_id = sys.argv[1]
 
