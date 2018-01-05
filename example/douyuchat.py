@@ -150,7 +150,16 @@ def run(room_id):
     room.on('uenter', on_uenter)
     room.on('dgb', on_dgb)
     room.knock()
-
+def runrun(room_id):
+    try:
+        run(room_id)
+    except Exception as e:
+        time.sleep(3)
+        runrun(room_id)
+    else:
+        pass
+    finally:
+        pass
 
 if __name__ == '__main__':
     filename = sys.argv[0]
@@ -159,4 +168,4 @@ if __name__ == '__main__':
     else:
         room_id = sys.argv[1]
 
-        run(room_id)
+        runrun(room_id)
