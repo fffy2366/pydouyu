@@ -123,9 +123,10 @@ def on_dgb(msg):
 
     s = "感谢{0}赠送的{1}".format(msg.attr('nn'),gift)
     if(s!=gift_msg):
-        system('say '+s)
+        # system('say '+s)
+        say(s)
         gift_msg = s
-    print(s)
+    echo(s)
 
     # 按日期保存入redis
     # r.publish('douyu', s)
@@ -154,8 +155,9 @@ def runrun(room_id):
     try:
         run(room_id)
     except Exception as e:
+        print(e)
         time.sleep(3)
-        runrun(room_id)
+        # runrun(room_id)
     else:
         pass
     finally:
